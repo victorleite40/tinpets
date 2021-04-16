@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pet-register</ion-title>
+    <ion-title>Registro Pet</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item style="margin: 15px 0;">
+    <ion-label position="floating">Nome do Pet: </ion-label>
+    <ion-input [(ngModel)]="petName"></ion-input>
+  </ion-item>
+  <ion-item style="margin: 15px 0;">
+    <ion-label >Espécie:</ion-label>
+    <ion-select style="margin: 5px 0;" [(ngModel)]="petType">
+      <ion-select-option value="dog">Cachorro</ion-select-option>
+      <ion-select-option value="cat">Gato</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item style="margin: 15px 0;">
+    <ion-label >Genero:</ion-label>
+    <ion-select style="margin: 5px 0;" [(ngModel)]="petSex">
+      <ion-select-option value="fem">Femea</ion-select-option>
+      <ion-select-option value="masc">Macho</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item style="margin: 15px 0;">
+    <ion-label >Tamanho  :</ion-label>
+    <ion-select style="margin: 5px 0;" [(ngModel)]="petSize">
+      <ion-select-option value="grande">Grande</ion-select-option>
+      <ion-select-option value="medio">Médio</ion-select-option>
+      <ion-select-option value="pequeno">Pequeno</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item style="margin: 15px 0;">
+    <ion-label position="floating">Idade:</ion-label>
+    <ion-input [(ngModel)]="petAge"></ion-input>
+  </ion-item>
+  <ion-item style="margin: 15px 0;">
+    <ion-label>Fotos:</ion-label> 
+    <ion-input type="file" accept="image/*"></ion-input>
+  </ion-item>
+  <ion-button (click)="clickFunc()">Enviar dados</ion-button>
 </ion-content>
