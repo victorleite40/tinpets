@@ -1,0 +1,35 @@
+ion-slide {
+  flex-direction: column;
+
+  ion-card {
+    text-align: left;
+  }
+
+  .rate {
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+
+    ion-badge {
+      padding: 15px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-icon {
+        font-size: 30px;
+      }
+
+      .reject {
+        color: palevioletred;
+      }
+
+      .like {
+        color: #84da03;
+      }
+    }
+
+  }
+}
+
