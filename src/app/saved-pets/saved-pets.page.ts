@@ -29,7 +29,7 @@ export class SavedPetsPage implements OnInit {
    public animal: IAnimal;
   ngOnInit() { 
     const URLAnimals1 = 'https://images.pexels.com/photos/'; //end with photo code
-  const URLAnimals2 = '/pexels-photo-'; //end with .jpeg
+    const URLAnimals2 = '/pexels-photo-'; //end with .jpeg
     const NameList  = [
     'Buttercup',                      
     'Jellylorum',

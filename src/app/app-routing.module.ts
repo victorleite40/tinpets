@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'saved-pets',
     loadChildren: () => import('./saved-pets/saved-pets.module').then( m => m.SavedPetsPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 
 ];
 
