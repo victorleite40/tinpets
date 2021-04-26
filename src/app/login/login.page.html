@@ -13,16 +13,15 @@
   </ion-item>
 
 
-  <ion-item>
-
-    <ion-label position="floating" >Senha<ion-icon style="position:floating;"name="eye-off-outline"></ion-icon></ion-label>
-    <ion-textarea></ion-textarea>
+  <ion-item style="position: relative">
+    <ion-label position="floating">Senha</ion-label>
+    <ion-input type="{{eyeType ? 'password' : 'text'}}" style="z-index: 1"></ion-input>
+    <ion-icon style="position: absolute; right: 30px; top: 40%; z-index: 3;" (click)="changeEyeType()"
+      name="eye{{eyeType}}"></ion-icon>
   </ion-item>
 
-
-<ion-button style="font-size: 3vw" fill = "clear" color = "blue" >Esqueceu sua senha/usuario ?</ion-button>
-<ion-button style="font-size: 3vw" fill = "clear" color = "blue" >Deseja criar uma conta?</ion-button>
-
+  <div style="display: flex; flex-direction: column;">
+    <ion-button style="font-size: 11px" fill="clear" color="blue">Esqueceu sua senha/usuario ?</ion-button>
+    <a href="/cadastropessoa" style="font-size: 11px; text-decoration: none; margin: auto" fill="clear" color="blue">Deseja criar uma conta?</a>
+  </div>
 </ion-content>
-
-
