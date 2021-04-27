@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'recuperarsenha',
+    loadChildren: () => import('./recuperarsenha/recuperarsenha.module').then( m => m.RecuperarsenhaPageModule)
+  },
 
 
 ];
