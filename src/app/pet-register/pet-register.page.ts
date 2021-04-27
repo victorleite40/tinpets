@@ -24,6 +24,11 @@ export class PetRegisterPage implements OnInit {
 
   async clickFunc() {
     if (this.petName && this.petType && this.petSex && this.petSize && this.petAge) {
+      console.log('petName', this.petName)
+      console.log('petType', this.petType)
+      console.log('petSex', this.petSex)
+      console.log('petSize', this.petSize)
+      console.log('petAge', this.petAge)
       const toast = await this.toastController.create({
         message: 'Seu pet foi cadastrado com sucesso.',
         duration: 2000,
