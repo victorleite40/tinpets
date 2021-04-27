@@ -28,8 +28,8 @@ export class SavedPetsPage implements OnInit {
    }
    public animal: IAnimal;
   ngOnInit() { 
-    const URLAnimals1 = 'https://images.pexels.com/photos/'; //end with photo code
-    const URLAnimals2 = '/pexels-photo-'; //end with .jpeg
+    const URLAnimals = 'assets/imgPets/pexels-photo-'; //end with photo code
+     
     const NameList  = [
     'Buttercup',                      
     'Jellylorum',
@@ -81,18 +81,14 @@ export class SavedPetsPage implements OnInit {
     'Dice'];
     
     let start = 1 
-    
-    while(start++ < 50){
+     
+    while(start++ < 30){
  
-      let photoIndex = Math.floor((Math.random() * 1999999) + 1000000);
-      
-      // animal.Name = NameList[start];
-      // animal.UrlPhoto = URLAnimals1 + photoIndex +URLAnimals2 + photoIndex +'.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
       this.AnimalList.push(
         {
           Name: NameList[start],
-          UrlPhoto: URLAnimals1 + photoIndex +URLAnimals2 + photoIndex +'.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-          Type:   start % 2 == 0 ? 'Cão' : 'Gato'
+          UrlPhoto: URLAnimals + (start < 10 ? 0 : '') + start +'.jpeg',
+          Type:   start < 20 ? 'Cão' : 'Gato'
         }
       );
 
