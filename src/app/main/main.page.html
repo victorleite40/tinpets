@@ -8,104 +8,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides #slidesRef>
 
-    <ion-slide>
+  <div class="noCards">
+    <ion-icon size="large" name="alert-circle-outline"></ion-icon>
+    <h4>Você já viu tudo por enquanto!</h4>
+  </div>
+
+  <div class="cards">
+    <div class="card" *ngFor="let animal of Animals; let i = index">
       <ion-card>
-        <img src="https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg" />
+        <img [src]="animal.images[0]" />
         <ion-card-header>
-          <ion-card-subtitle>CACHORRO</ion-card-subtitle>
-          <ion-card-title>Pepe, 3</ion-card-title>
+          <ion-card-subtitle>{{ animal.type }}</ion-card-subtitle>
+          <ion-card-title>{{ animal.name }}, {{ animal.age.years }}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-          Esse é o Pepe. Ele gosta muito de comer um osso gostoso e duro! Quanto mais duro e maior, melhor.
+          {{ animal.description }}
         </ion-card-content>
       </ion-card>
 
 
       <div class="rate">
         <ion-badge color="light">
-          <ion-icon class="reject" name="close"></ion-icon>
+          <ion-icon class="reject" name="close" (click)="dislike(animal.id)"></ion-icon>
         </ion-badge>
         <ion-badge color="light">
-          <ion-icon class="like" name="heart" (click)="nextSlide()" ></ion-icon>
+          <ion-icon class="like" name="heart" (click)="like(animal.id)" ></ion-icon>
         </ion-badge>
       </div>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card>
-        <img src="https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg" />
-        <ion-card-header>
-          <ion-card-subtitle>CACHORRO</ion-card-subtitle>
-          <ion-card-title>Pepe, 3</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Esse é o Pepe. Ele gosta muito de comer um osso gostoso e duro! Quanto mais duro e maior, melhor.
-        </ion-card-content>
-      </ion-card>
-
-
-      <div class="rate">
-        <ion-badge color="light">
-          <ion-icon class="reject" name="close"></ion-icon>
-        </ion-badge>
-        <ion-badge color="light">
-          <ion-icon class="like" name="heart"></ion-icon>
-        </ion-badge>
-      </div>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card>
-        <img src="https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg" />
-        <ion-card-header>
-          <ion-card-subtitle>CACHORRO</ion-card-subtitle>
-          <ion-card-title>Pepe, 3</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Esse é o Pepe. Ele gosta muito de comer um osso gostoso e duro! Quanto mais duro e maior, melhor.
-        </ion-card-content>
-      </ion-card>
-
-
-      <div class="rate">
-        <ion-badge color="light">
-          <ion-icon class="reject" name="close"></ion-icon>
-        </ion-badge>
-        <ion-badge color="light">
-          <ion-icon class="like" name="heart"></ion-icon>
-        </ion-badge>
-      </div>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card>
-        <img src="https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg" />
-        <ion-card-header>
-          <ion-card-subtitle>CACHORRO</ion-card-subtitle>
-          <ion-card-title>Pepe, 3</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Esse é o Pepe. Ele gosta muito de comer um osso gostoso e duro! Quanto mais duro e maior, melhor.
-        </ion-card-content>
-      </ion-card>
-
-
-      <div class="rate">
-        <ion-badge color="light">
-          <ion-icon class="reject" name="close"></ion-icon>
-        </ion-badge>
-        <ion-badge color="light">
-          <ion-icon class="like" name="heart"></ion-icon>
-        </ion-badge>
-      </div>
-    </ion-slide>
-
-  </ion-slides>
+    </div>
+  </div>
 
 </ion-content>
