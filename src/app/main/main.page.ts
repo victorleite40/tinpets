@@ -22,7 +22,7 @@ export class MainPage implements OnInit {
 
   @ViewChild('slidesRef') slide: IonSlides;
 
-  public Animals: IAnimal[] = [
+  private Animals: IAnimal[] = [
     {
       id: 1,
       type: 'Cão',
@@ -55,6 +55,8 @@ export class MainPage implements OnInit {
     },
   ];
 
+  public filter: string = 'none';
+
   constructor() { }
 
   ngOnInit() {
@@ -72,4 +74,20 @@ export class MainPage implements OnInit {
     this.popAnimal(id);
   }
 
+  // Return the list of Animals
+  GetAnimalsList() {
+    let response = this.Animals;
+
+    // If has filter, will be applyed before respose
+    if (this.filter!=='none') {
+      response = response.filter(animal => animal.type===this.filter);
+    }
+
+    return response;
+  }
+
+  // Called on filter select change
+  UpdateFilter(value: CustomEvent) {
+    this.filter = value.detail.value;
+  }
 }
