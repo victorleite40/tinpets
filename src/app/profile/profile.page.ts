@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Profile, ProfileServiceService } from '../service/profile-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,19 +9,31 @@ import { ToastController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
+  public perfil: Profile;
+
   public profileName: string;
   public profileIdentity: string;
   public profileMail: string;
   public profileAddress: string;
 
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController,
+    private contactService: ProfileServiceService) { }
 
   ngOnInit() {
-    this.profileName = "fulano de tal"
-    this.profileIdentity = "531235123";
-    this.profileMail = "fulano_de_tal@email.com";
-    this.profileAddress = "Rua sei la onde";
+    if(this.perfil != null){
+      
+      this.profileName = this.perfil.profilename;
+      this.profileIdentity = this.perfil.profileIdentity;
+      this.profileMail = this.perfil.profileMail;
+      this.profileAddress = this.perfil.profileAddress.rua;
+    }
+    else{
+      this.profileName = "";
+      this.profileIdentity = "531235123";
+      this.profileMail = "fulano_de_tal@email.com";
+      this.profileAddress = "Rua sei la onde";
+    }
   }
 
   async handleClick() {
