@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Profile, ProfileServiceService } from '../service/profile-service.service';
@@ -18,15 +19,18 @@ export class ProfilePage implements OnInit {
 
 
   constructor(public toastController: ToastController,
-    private contactService: ProfileServiceService) { }
+    private profileService: ProfileServiceService,
+    private storage: Storage) { }
 
   ngOnInit() {
+    this.perfil = this.profileService.GetProfile();
     if(this.perfil != null){
-      
+
       this.profileName = this.perfil.profilename;
       this.profileIdentity = this.perfil.profileIdentity;
       this.profileMail = this.perfil.profileMail;
       this.profileAddress = this.perfil.profileAddress.rua;
+
     }
     else{
       this.profileName = "";
@@ -43,6 +47,9 @@ export class ProfilePage implements OnInit {
       console.log('profileIdentity', this.profileIdentity)
       console.log('profileMail', this.profileMail)
       console.log('profileAddress', this.profileAddress)
+      
+      this.profileService.updateContact(this.perfil.user, this.perfil);
+
       const toast = await this.toastController.create({
         message: 'Seu perfil foi atualaizado com sucesso.',
         duration: 2000,

@@ -17,13 +17,13 @@ export interface Endereco{
 export interface Profile{
   user:     string,
   password: string,
-  name:     string,
-  cpfcnpj:  string,
-  email:    string,
-  endereco: Endereco,
-  isDoador: boolean,
-  isCruza:  boolean,
-  isAdocao: boolean,
+  profilename?:     string,
+  profileIdentity?:  string,
+  profileMail?:    string,
+  profileAddress?: Endereco,
+  isDoador?: boolean,
+  isCruza?:  boolean,
+  isAdocao?: boolean,
 
 }
 
@@ -31,6 +31,7 @@ export interface Profile{
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProfileServiceService {
 
   public perfil: Profile;
@@ -38,7 +39,8 @@ export class ProfileServiceService {
   public perfis: Profile[] = [];
 
   public GetProfile(){
-    return { ...this.perfil};
+
+    return { ...this.perfil ?? null};
   }
 
   public findByUsername(username: string): Profile {
@@ -46,8 +48,13 @@ export class ProfileServiceService {
   }
 
   public updateContact(username: string, contact: Profile) {
-    this.perfil = contact;
-    
+    this.perfil = contact; 
+    this.saveAtStorage();
+
+  }
+
+  public InsertProfile(prof: Profile){
+    this.perfil = prof;
     this.saveAtStorage();
   }
 
@@ -55,15 +62,19 @@ export class ProfileServiceService {
     this.storage.set('Perfil', this.perfil);
   }
 
-  private async loadFromStorage() {
+  public async loadFromStorage() {
+    console.log('leo');
     const storedProfile = await this.storage.get('Perfil') as Profile;
     if (storedProfile) {
       this.perfil = storedProfile;
-    }
+     
+    } 
+        
   }
 
-  constructor(private storage: Storage) {
-    
-    this.loadFromStorage();
-    } 
+  constructor(private storage: Storage) { 
+    console.log('joao');
+   
+
+  } 
 }

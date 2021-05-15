@@ -9,19 +9,22 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Nome de usuário</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea [(ngModel)]="username"></ion-textarea>
   </ion-item>
 
 
   <ion-item style="position: relative">
     <ion-label position="floating">Senha</ion-label>
-    <ion-input type="{{eyeType ? 'password' : 'text'}}" style="z-index: 1"></ion-input>
+    <ion-input type="{{eyeType ? 'password' : 'text'}}" style="z-index: 1" [(ngModel)]="password"></ion-input>
     <ion-icon style="position: absolute; right: 30px; top: 40%; z-index: 3;" (click)="changeEyeType()"
       name="eye{{eyeType}}"></ion-icon>
   </ion-item>
 
   <div style="display: flex; flex-direction: column;">
     <a href="/recuperarsenha" style="font-size: 11px; text-decoration: none; margin: 15px auto" fill="clear" color="blue">Esqueci minha senha/usuario</a>
-    <a href="/cadastropessoa" style="font-size: 11px; text-decoration: none; margin: auto" fill="clear" color="blue">Deseja criar uma conta?</a>
+    <a href="/cadastropessoa" style="font-size: 11px; text-decoration: none; margin: auto" fill="clear" color="blue">Deseja criar uma conta?</a> 
+  </div>
+  <div >
+    <ion-button expand="block" (click)="handleClick()">Entrar</ion-button>
   </div>
 </ion-content>
