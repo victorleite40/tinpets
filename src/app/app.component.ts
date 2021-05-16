@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   ];
   
-  public username: string;
+   
 
 
   constructor (
@@ -31,16 +31,12 @@ export class AppComponent implements OnInit {
     }
 
     async ngOnInit() {
-      console.log('1');
+       
       await this.storage.create();
-      console.log(this.storage);
+       
 
       this.profileService.loadFromStorage();
       
-      console.log('tt');
-      console.log(this.profileService.perfil);
-      if(this.profileService.perfil != null){
-        this.username = this.profileService.perfil.user;
-      }
+        
     }
 }

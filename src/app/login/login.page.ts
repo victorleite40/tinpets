@@ -34,14 +34,11 @@ export class LoginPage implements OnInit {
   }
 
   async handleClick(){
-    if(this.username == this.profService.perfil.user &&
-      this.password == this.profService.perfil.password 
-      )
+    if(this.profService.Login(this.username, this.password)) 
       {
         this.router.navigateByUrl('/main');
       }
-      else{
-
+      else{ 
         this.username = "";
         this.password = "";
         const toast = await this.toastController.create({

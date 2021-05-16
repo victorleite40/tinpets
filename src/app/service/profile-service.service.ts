@@ -44,7 +44,18 @@ export class ProfileServiceService {
   }
 
   public findByUsername(username: string): Profile {
-    return { ...this.perfis.find(c => c.user === username) };
+    return { ...this.perfis.find(c => c.user === username) ?? null };
+  }
+
+  public Login(username:string, password:string){
+     
+    var found = this.perfis.find(x=>x.password == password && x.user == username);
+    if(found != null){
+      this.perfil = found;
+      this.saveAtStorage();
+      return true;
+    }
+    return false;
   }
 
   public updateContact(username: string, contact: Profile) {
@@ -57,24 +68,30 @@ export class ProfileServiceService {
     this.perfil = prof;
     this.saveAtStorage();
   }
-
+  public AddProfile(newProf: Profile){
+    this.perfis.push(newProf);
+    this.saveAtStorage();
+  }
+  
   private saveAtStorage() {
     this.storage.set('Perfil', this.perfil);
+    this.storage.set('Perfis',this.perfis);
   }
 
   public async loadFromStorage() {
-    console.log('leo');
-    const storedProfile = await this.storage.get('Perfil') as Profile;
-    if (storedProfile) {
-      this.perfil = storedProfile;
      
+    const storedProfile = await this.storage.get('Perfil') as Profile;
+    const storedprofiles = await this.storage.get('Perfis') as Profile[];
+    if (storedProfile) {
+      this.perfil = storedProfile; 
     } 
+    if(storedprofiles){
+      this.perfis = storedprofiles;
+    }
         
   }
 
   constructor(private storage: Storage) { 
-    console.log('joao');
-   
 
   } 
 }

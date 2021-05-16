@@ -12,41 +12,31 @@ export class ProfilePage implements OnInit {
 
   public perfil: Profile;
 
-  public profileName: string;
-  public profileIdentity: string;
-  public profileMail: string;
-  public profileAddress: string;
-
-
+  
   constructor(public toastController: ToastController,
     private profileService: ProfileServiceService,
     private storage: Storage) { }
 
   ngOnInit() {
     this.perfil = this.profileService.GetProfile();
-    if(this.perfil != null){
-
-      this.profileName = this.perfil.profilename;
-      this.profileIdentity = this.perfil.profileIdentity;
-      this.profileMail = this.perfil.profileMail;
-      this.profileAddress = this.perfil.profileAddress.rua;
-
-    }
-    else{
-      this.profileName = "";
-      this.profileIdentity = "531235123";
-      this.profileMail = "fulano_de_tal@email.com";
-      this.profileAddress = "Rua sei la onde";
-    }
+    // if(this.perfil != null){
+ 
+    // }
+    // else{
+    //   this.profileName = "";
+    //   this.profileIdentity = "531235123";
+    //   this.profileMail = "fulano_de_tal@email.com";
+    //   this.profileAddress = "Rua sei la onde";
+    // }
   }
 
   async handleClick() {
     //TODO: adicionar aviso na pagina qual item esta faltando preencher
-    if (this.profileName && this.profileIdentity && this.profileMail && this.profileAddress) {
-      console.log('profileName', this.profileName)
-      console.log('profileIdentity', this.profileIdentity)
-      console.log('profileMail', this.profileMail)
-      console.log('profileAddress', this.profileAddress)
+    if (this.perfil.user && this.perfil.profileIdentity && this.perfil.profileMail && this.perfil.profileAddress) {
+      console.log('profileName', this.perfil.profilename)
+      console.log('profileIdentity', this.perfil.profileIdentity)
+      console.log('profileMail', this.perfil.profileMail)
+      console.log('profileAddress', this.perfil.profileAddress)
       
       this.profileService.updateContact(this.perfil.user, this.perfil);
 
