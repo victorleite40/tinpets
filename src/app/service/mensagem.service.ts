@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { IonDatetime } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
-@Injectable({
-  providedIn: 'root'
-})
 
 export interface Mensagem{
   user?:    string,
@@ -17,6 +14,9 @@ export interface Mensagem{
 }
 
 
+@Injectable({
+  providedIn: 'root'
+})
 
 export class MensagemService {
 
