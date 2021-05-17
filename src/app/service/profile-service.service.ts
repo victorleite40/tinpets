@@ -15,7 +15,7 @@ export interface Endereco{
 }
 
 export interface Profile{
-  user:     string,
+  user?:     string,
   password: string,
   profilename?:     string,
   profileIdentity?:  string,

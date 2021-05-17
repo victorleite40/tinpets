@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
     { title: 'Salvos', url: 'saved-pets', icon: 'heart' }, 
     { title: 'Novo Pet', url: 'pet-register', icon: 'paw' }, 
     { title: 'Configurações', url: 'cadastropesssoa', icon: 'settings' },
+    { title: 'Sair', url: 'login', icon: 'log-out' },
+
 
   ];
   
