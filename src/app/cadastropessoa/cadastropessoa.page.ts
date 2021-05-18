@@ -11,24 +11,24 @@ import { Profile, ProfileServiceService } from '../service/profile-service.servi
 
 
 export class CadastropessoaPage implements OnInit {
-  
-  public novoperfil:Profile = {
+
+  public novoperfil: Profile = {
     user: "",
     password: ""
   };
 
   constructor(public toastController: ToastController,
-     private profService: ProfileServiceService,
-     private router: Router) { }
+    private profService: ProfileServiceService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  async validate(){
-     
+  async validate() {
+
     var found = this.profService.findByUsername(this.novoperfil.user);
-    if(found.user != null){
-      console.log('encontrado ' + found.user);
+    if (found.user == this.novoperfil.user) {
+      
       const toast = await this.toastController.create({
         message: 'Nome de usuário já existente',
         duration: 2000,
@@ -36,11 +36,12 @@ export class CadastropessoaPage implements OnInit {
         color: 'danger'
       });
       toast.present();
-      this.novoperfil.user = "";
+      this.novoperfil.user = ""; 
       return false;
-    } 
+    }
 
-    if(this.novoperfil.user == "" || this.novoperfil.password == "" || this.novoperfil.profileMail== ""){
+    if (this.novoperfil.user == "" || this.novoperfil.password == "" || this.novoperfil.profileMail == "") {
+      
       const toast = await this.toastController.create({
         message: 'preencha todos os campos necessários',
         duration: 2000,
@@ -49,27 +50,31 @@ export class CadastropessoaPage implements OnInit {
       });
       toast.present();
       return false;
-    }
-     
+    } 
     return true;
   }
 
-  async handleClick(){
+  async handleClick() {
+
     
-      if(this.validate()){
-     
-        this.profService.AddProfile(this.novoperfil);
-        this.profService.InsertProfile(this.novoperfil);
-      }
+
+    if (!await this.validate()) {
        
-        const toast = await this.toastController.create({
-          message: 'usuário cadastrado com sucesso!',
-          duration: 2000,
-          position: 'top',
-          color: 'success'
-        });
-        toast.present();
-        this.router.navigateByUrl('/login');
+      return;
+    }
+    else {
+
+      this.profService.AddProfile(this.novoperfil);
+      this.profService.InsertProfile(this.novoperfil);
+      const toast = await this.toastController.create({
+        message: 'usuário cadastrado com sucesso!',
+        duration: 2000,
+        position: 'top',
+        color: 'success'
+      });
+      toast.present();
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }

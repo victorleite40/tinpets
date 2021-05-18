@@ -34,7 +34,13 @@ export interface Profile{
 
 export class ProfileServiceService {
 
-  public perfil: Profile;
+  public perfil: Profile = {
+
+    isAdocao: true,
+    isDoador: true,
+    isCruza: true,
+
+  } as Profile;
 
   public perfis: Profile[] = [];
 

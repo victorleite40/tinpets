@@ -33,27 +33,27 @@
   <ion-item>
     <ion-label position="placeholder">Senha:
     </ion-label>
-    <ion-input type="password" [(ngModel)]="perfil.password"></ion-input>
+    <ion-input type="password" [(ngModel)]="perfil.password" ></ion-input>
   </ion-item>
 
-  <ion-item style="margin: 15px auto">
+  <ion-row style="margin: 15px auto">
     <div style="margin: 0 auto; display: flex; align-items: center; justify-content: center;">
       <ion-label>Doador</ion-label>
-      <ion-checkbox color="medium" [(ngModel)]="perfil.isDoador"></ion-checkbox>
+      <ion-checkbox color="medium" [(ngModel)]="perfil.isDoador" [checked]="perfil.isDoador"></ion-checkbox>
     </div>
     <div style="margin: 0 auto; display: flex; align-items: center; justify-content: center;">
       <ion-label>
         Cruzar
       </ion-label>
-      <ion-checkbox [(ngModel)]="perfil.isCruza"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="perfil.isCruza" [checked]="perfil.isCruza"></ion-checkbox>
     </div>
     <div style="margin: 0 auto; display: flex; align-items: center; justify-content: center;">
       <ion-label>
         Adotar
       </ion-label>
-      <ion-checkbox  [(ngModel)]="perfil.isAdocao"></ion-checkbox>
+      <ion-checkbox  [(ngModel)]="perfil.isAdocao" [checked]="perfil.isAdocao"></ion-checkbox>
     </div>
-  </ion-item>
+  </ion-row>
 
   <!-- <ion-item> -->
   <ion-button expand="block" (click)="handleClick()">Salvar</ion-button>
