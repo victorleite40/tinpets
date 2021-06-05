@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Profile, ProfileServiceService } from '../service/profile-service.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +13,16 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 
   public perfil: Profile;
-
+  public states: any;
+  public cities: any;
 
   constructor(public toastController: ToastController,
     private profileService: ProfileServiceService,
     private storage: Storage,
     private navController: NavController,
     private router: Router,
-    private alertController: AlertController) { }
+    private alertController: AlertController,
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.perfil = this.profileService.GetProfile();
@@ -28,7 +31,18 @@ export class ProfilePage implements OnInit {
     this.perfil.isCruza = this.perfil.isCruza ?? true;
     this.perfil.isAdocao = this.perfil.isAdocao ?? false;
 
+    this.http.get('../../assets/estados-cidades.json').subscribe(resp => {
+      this.states = resp
+      this.states = this.states.estados
+      if(this.perfil.userState) {
+        this.handleStateChange()
+      }
+    });
+  }
 
+  handleStateChange() {
+    const foundState = this.states.find(state => state.nome === this.perfil.userState);
+    this.cities = foundState.cidades;
   }
 
   async handleClick() {
@@ -49,7 +63,7 @@ export class ProfilePage implements OnInit {
       toast.present();
 
       if (this.perfil.isDoador || this.perfil.isCruza) {
-         
+
         await this.presentAddPetOption();
       }
       else {

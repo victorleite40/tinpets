@@ -24,7 +24,18 @@
     </ion-label>
     <ion-input [(ngModel)]="perfil.profileMail"></ion-input>
   </ion-item>
-
+  <ion-item>
+    <ion-label>Estado: </ion-label>
+    <ion-select [(ngModel)]="perfil.userState" (ionChange)="handleStateChange()">
+      <ion-select-option *ngFor="let state of states" value="{{state.nome}}">{{state.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Cidade: </ion-label>
+    <ion-select [(ngModel)]="perfil.userCity">
+      <ion-select-option *ngFor="let city of cities" value="city">{{city}}</ion-select-option>
+    </ion-select>
+  </ion-item>
   <ion-item>
     <ion-label position="floating">Endereço:
     </ion-label>
@@ -33,7 +44,7 @@
   <ion-item>
     <ion-label position="placeholder">Senha:
     </ion-label>
-    <ion-input type="password" [(ngModel)]="perfil.password" ></ion-input>
+    <ion-input type="password" [(ngModel)]="perfil.password"></ion-input>
   </ion-item>
 
   <ion-row style="margin: 15px auto">
@@ -51,7 +62,7 @@
       <ion-label>
         Adotar
       </ion-label>
-      <ion-checkbox  [(ngModel)]="perfil.isAdocao" [checked]="perfil.isAdocao"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="perfil.isAdocao" [checked]="perfil.isAdocao"></ion-checkbox>
     </div>
   </ion-row>
 

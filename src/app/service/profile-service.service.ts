@@ -20,6 +20,8 @@ export interface Profile{
   profilename?:     string,
   profileIdentity?:  string,
   profileMail?:    string,
+  userState?: string,
+  userCity?: string,
   profileAddress?: Endereco,
   isDoador?: boolean,
   isCruza?:  boolean,

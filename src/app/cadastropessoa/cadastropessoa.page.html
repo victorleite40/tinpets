@@ -1,4 +1,4 @@
-<ion-header  [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -9,26 +9,46 @@
 
 <ion-content>
   <ion-item>
-    <ion-label position="floating">Nome de usuário: <ion-textarea [(ngModel)]="novoperfil.user"></ion-textarea></ion-label>
+    <ion-label position="floating">Nome de usuário: <ion-textarea [(ngModel)]="novoperfil.user"></ion-textarea>
+    </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">CPF/CNPJ: <ion-textarea [(ngModel)]="novoperfil.profileIdentity"></ion-textarea></ion-label>
+    <ion-label position="floating">CPF/CNPJ: <ion-textarea [(ngModel)]="novoperfil.profileIdentity"></ion-textarea>
+    </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">e-mail: <ion-textarea [(ngModel)]="novoperfil.profileMail"></ion-textarea></ion-label>
+    <ion-label position="floating">e-mail: <ion-textarea [(ngModel)]="novoperfil.profileMail"></ion-textarea>
+    </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Endereço: <ion-textarea></ion-textarea></ion-label>
+    <ion-label>Estado: </ion-label>
+    <ion-select [(ngModel)]="novoperfil.userState" (ionChange)="handleStateChange()">
+      <ion-select-option *ngFor="let state of states" value="{{state.nome}}">{{state.nome}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Senha: <ion-textarea [(ngModel)]="novoperfil.password"></ion-textarea></ion-label>
+    <ion-label>Cidade: </ion-label>
+    <ion-select [(ngModel)]="novoperfil.userCity">
+      <ion-select-option *ngFor="let city of cities" value="city">{{city}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Endereço: <ion-textarea></ion-textarea>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Senha: <ion-textarea [(ngModel)]="novoperfil.password"></ion-textarea>
+    </ion-label>
   </ion-item>
 
   <!-- <a href="/login"> -->
-    <ion-button expand= "full" class = "button-full"(click)="handleClick()"><h2>Criar conta</h2></ion-button>
+  <ion-button expand="full" class="button-full" (click)="handleClick()">
+    <h2>Criar conta</h2>
+  </ion-button>
   <!-- </a> -->
 
 
