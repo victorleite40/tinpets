@@ -38,7 +38,11 @@ const routes: Routes = [
   {
     path: 'recuperarsenha',
     loadChildren: () => import('./recuperarsenha/recuperarsenha.module').then( m => m.RecuperarsenhaPageModule)
+  },  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
+
 
 
 ];
