@@ -5,25 +5,25 @@
     </ion-buttons>
     <ion-title>Pet Salvos</ion-title>
   </ion-toolbar>
-</ion-header> 
+</ion-header>
 <ion-content>
   <ion-list>
-    <div *ngFor="let p of AnimalList; let i = index">
+    <a *ngFor="let p of AnimalList; let i = index" routerLink="/chat" style="color: transparent;">
       <ion-item>
-        <ion-item> 
+        <ion-item>
           <br/>
-          <ion-row>    
+          <ion-row>
             <ion-avatar>
-              <img [src]="p.UrlPhoto">  
-            </ion-avatar>   
+              <img [src]="p.UrlPhoto">
+            </ion-avatar>
             &nbsp;&nbsp;
             <ion-label>{{ p.Name }}
-            <br/> 
-            <br/> 
+            <br/>
+            <br/>
             <strong>{{ p.Type }}</strong></ion-label>
           </ion-row>
         </ion-item>
       </ion-item>
-    </div>
+    </a>
   </ion-list>
 </ion-content>
