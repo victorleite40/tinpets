@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { PetService, Animal} from '../service/pet.service';
+import { Storage } from '@ionic/storage';
+import { ProfileServiceService } from '../service/profile-service.service';
+
 
 @Component({
   selector: 'app-pet-register',
@@ -7,28 +11,22 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./pet-register.page.scss'],
 })
 export class PetRegisterPage implements OnInit {
+ 
 
-  public petName: string;
-  public petType: string;
-  public petSex: string;
-  public petSize: string;
-  public petAge: string;
+  public newPet: Animal = {} as Animal;
 
-  constructor(public toastController: ToastController) {
+  
 
-  }
-
-  ngOnInit() {
-
-  }
 
   async clickFunc() {
-    if (this.petName && this.petType && this.petSex && this.petSize && this.petAge) {
-      console.log('petName', this.petName)
-      console.log('petType', this.petType)
-      console.log('petSex', this.petSex)
-      console.log('petSize', this.petSize)
-      console.log('petAge', this.petAge)
+    console.log(this.newPet.urlphoto)
+
+
+    if (this.newPet.petName && this.newPet.petType && this.newPet.petSex && this.newPet.petSize && this.newPet.petAge) {
+ 
+
+      this.newPet.petUser = this.userService.perfil.user;
+      this.petService.AddAnimal(this.newPet);
       const toast = await this.toastController.create({
         message: 'Seu pet foi cadastrado com sucesso.',
         duration: 2000,
@@ -36,11 +34,11 @@ export class PetRegisterPage implements OnInit {
         color: 'success'
       });
       toast.present();
-      this.petName = '';
-      this.petType = '';
-      this.petSex = '';
-      this.petSize = '';
-      this.petAge = '';
+      this.newPet.petName = '';
+      this.newPet.petType = '';
+      this.newPet.petSex = '';
+      this.newPet.petSize = '';
+      this.newPet.petAge = '';
     }else {
       const toast = await this.toastController.create({
         message: 'Esta faltando informaçoes para completar o cadastro do seu pet.',
@@ -51,4 +49,17 @@ export class PetRegisterPage implements OnInit {
       toast.present();
     }
   }
+  
+  constructor(public toastController: ToastController,
+    public petService: PetService,
+    private userService: ProfileServiceService,
+    private storage: Storage) {
+
+      this.petService.loadFromStorage();
+  }
+  
+  ngOnInit() {
+     
+  }
+
 }

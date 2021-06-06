@@ -33,7 +33,8 @@ export class LoginPage implements OnInit {
     
   }
 
-  async handleClick(){
+  async handleClick(){ 
+
     if(this.profService.Login(this.username, this.password)) 
       {
         this.router.navigateByUrl('/main');

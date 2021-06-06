@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile, ProfileServiceService } from './service/profile-service.service';
 import { Storage } from '@ionic/storage';
+import { PetService } from './service/pet.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
 
   constructor (
     private storage: Storage,
-    private profileService: ProfileServiceService) {
+    private profileService: ProfileServiceService,
+    private animalService: PetService) {
       
       
     }
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
        
 
       this.profileService.loadFromStorage();
-      
+      this.animalService.loadFromStorage();
         
     }
 }

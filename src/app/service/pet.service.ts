@@ -1,3 +1,8 @@
+
+
+//TODO FUNCIONAMENTO PÁGINA INTEIRA
+
+
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -29,7 +34,7 @@ export interface AnimalDoado{
 export class PetService {
 
   public animal: Animal = {} as Animal;
-  public Animals: Animal[];
+  public Animals: Animal[] = [];
 
 
   public GetAnimal(){
@@ -48,12 +53,13 @@ export class PetService {
 
   }
 
-  public InsertAnimal(prof: Animal){
-    this.animal = prof;
+  public InsertAnimal(animal: Animal){
+    this.animal = animal;
     this.saveAtStorage();
   }
-  public AddAnimal(newProf: Animal){
-    this.Animals.push(newProf);
+
+  public AddAnimal(newanimal: Animal){
+    this.Animals.push(newanimal);
     this.saveAtStorage();
   }
   
@@ -63,7 +69,7 @@ export class PetService {
   }
 
   public async loadFromStorage() {
-     
+      
     const storedAnimal = await this.storage.get('animal') as Animal;
     const storedAnimals = await this.storage.get('Animals') as Animal[];
     if (storedAnimal) {
@@ -74,6 +80,9 @@ export class PetService {
     }
         
   } 
+
+  constructor(private storage: Storage) { 
+     
+  }
   
-  constructor(private storage: Storage) { }
 }
