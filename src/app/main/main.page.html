@@ -26,7 +26,7 @@
       <ion-card>
         <img [src]="animal.images[0]" />
         <ion-card-header>
-          <ion-card-subtitle>{{ animal.type }}</ion-card-subtitle>
+          <ion-card-subtitle>{{ animal.type }}, {{ animal.intend }}</ion-card-subtitle>
           <ion-card-title>{{ animal.name }}, {{ animal.age.years }}</ion-card-title>
         </ion-card-header>
 
@@ -41,7 +41,7 @@
           <ion-icon class="reject" name="close" (click)="dislike(animal.id)"></ion-icon>
         </ion-badge>
         <ion-badge color="light">
-          <ion-icon class="like" name="heart" (click)="like(animal.id)" ></ion-icon>
+          <ion-icon class="like" name="heart" (click)="like(animal.id)"></ion-icon>
         </ion-badge>
       </div>
     </div>

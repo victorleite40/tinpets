@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { MainService } from '../service/main.service';
 
 interface IAnimal {
   id: number;
@@ -11,6 +12,7 @@ interface IAnimal {
   }
   description: string;
   images: string[];
+  intend: 'Adotar' | 'Cruzar' | 'Doar';
 }
 
 @Component({
@@ -31,7 +33,8 @@ export class MainPage implements OnInit {
         years: 3
       },
       description: 'Esse é o Pepe. Ele gosta muito de comer um osso gostoso e duro! Quanto mais duro e maior, melhor.',
-      images: ['https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg']
+      images: ['https://pet.talknmb.com.br/wp-content/uploads/2020/04/artigo_mercado-pet-food-scaled.jpg'],
+      intend: 'Cruzar'
     },
     {
       id: 2,
@@ -41,7 +44,8 @@ export class MainPage implements OnInit {
         years: 2
       },
       description: 'Nesse caso é Marley ou Eu :(. Minha esposa tem alergia à seus pelos. Muito amoroso!',
-      images: ['http://g1.globo.com/Noticias/Cinema/foto/0,,16207727,00.jpg', 'https://i0.wp.com/portalovertube.com/wp-content/uploads/2020/05/Marley-Eu-1132x509.jpg', 'https://veja.abril.com.br/wp-content/uploads/2016/06/filmes-bestseller-13-original.jpeg']
+      images: ['http://g1.globo.com/Noticias/Cinema/foto/0,,16207727,00.jpg', 'https://i0.wp.com/portalovertube.com/wp-content/uploads/2020/05/Marley-Eu-1132x509.jpg', 'https://veja.abril.com.br/wp-content/uploads/2016/06/filmes-bestseller-13-original.jpeg'],
+      intend: 'Doar'
     },
     {
       id: 3,
@@ -51,13 +55,16 @@ export class MainPage implements OnInit {
         years: 5
       },
       description: 'Gato dócil e nunca fugiu de casa. Infelizmente está à procura de um novo lar. Por ordem deles.',
-      images: ['https://i.pinimg.com/originals/e7/dc/04/e7dc04976eb5c4b823a2b31c0c6e6b2c.jpg']
+      images: ['https://i.pinimg.com/originals/e7/dc/04/e7dc04976eb5c4b823a2b31c0c6e6b2c.jpg'],
+      intend: 'Doar'
     },
   ];
 
   public filter: string = 'none';
 
-  constructor() { }
+  constructor(
+    private mainService: MainService
+  ) { }
 
   ngOnInit() {
   }
@@ -68,10 +75,12 @@ export class MainPage implements OnInit {
 
   dislike(id: number) {
     this.popAnimal(id);
+    this.mainService.PushDislike(id);
   }
 
   like(id: number) {
     this.popAnimal(id);
+    this.mainService.PushLike(id);
   }
 
   // Return the list of Animals
