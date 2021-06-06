@@ -42,13 +42,25 @@ export class PetService {
     return { ...this.animal ?? null};
   }
 
+  
+  public GetAnimals(user: string): Animal[]{
+
+    return  this.Animals.filter(a=> a.petUser == user);
+  }
+  
+  public GetAnimalbyName(user: string, pet: string ){
+    this.animal =this.Animals.find(a=> a.petUser == user && a.petName == pet); 
+    return { ...this.animal};
+  }
+
   public findByUsername(user: string, pet: string): Animal {
     return { ...this.Animals.find(c => c.petUser === user && c.petName) ?? null };
   }
 
   
-  public updateContact(username: string, contact: Animal) {
-    this.animal = contact; 
+  public updateContact(username: string, pet: Animal) {
+    const i = this.Animals.findIndex(y=>y.petUser == username && y.petName == pet.petName); 
+    this.Animals[i] = pet;
     this.saveAtStorage();
 
   }
