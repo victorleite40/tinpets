@@ -69,7 +69,7 @@ public alteracao: boolean;
   }
   
   ngOnInit() {
-     if(this.petService.animal != null){
+     if(this.petService.animal.petName != null){
        this.newPet = this.petService.animal;
        this.alteracao = true;
         
